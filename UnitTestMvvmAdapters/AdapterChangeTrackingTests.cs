@@ -102,5 +102,50 @@ namespace UnitTestMvvmAdapters
             Assert.Equal(true, isRaised);
         }
 
+        [Fact]
+
+        public void ShouldAcceptChanges()
+        {
+            Initialize();
+            var adapter = new PocoTestAdapter(_tester);
+            adapter.TestName = "Sandra";
+            adapter.TestId = 100;
+            Assert.Equal("Sandra", adapter.TestName);
+            Assert.Equal("Roger", adapter.TestNameOriginal);
+            Assert.True(adapter.TestIdHasChanged);
+            Assert.True(adapter.IsChanged);
+
+            adapter.AcceptChanges();
+
+            Assert.Equal("Sandra", adapter.TestName);
+            Assert.Equal("Sandra", adapter.TestNameOriginal);
+            Assert.False(adapter.TestIdHasChanged);
+            Assert.False(adapter.IsChanged);
+
+        }
+
+        [Fact]
+
+        public void ShouldRejectChanges()
+        {
+            Initialize();
+            var adapter = new PocoTestAdapter(_tester);
+            adapter.TestName = "Sandra";
+            adapter.TestId = 100;
+            Assert.Equal("Sandra", adapter.TestName);
+            Assert.Equal("Roger", adapter.TestNameOriginal);
+            Assert.True(adapter.TestIdHasChanged);
+            Assert.True(adapter.IsChanged);
+
+            adapter.RejectChanges();
+
+            Assert.Equal("Roger", adapter.TestName);
+            Assert.Equal("Roger", adapter.TestNameOriginal);
+            Assert.Equal(25, adapter.TestId);
+            Assert.False(adapter.TestIdHasChanged);
+            Assert.False(adapter.IsChanged);
+
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MvvmAadapters
 {
-    public class ModelAdapter<T> : ViewModelBase 
+    public class ModelAdapter<T> : ViewModelBase , IRevertibleChangeTracking
         where T : class
     {
         private Dictionary<string, object> _changedProperties;
@@ -22,6 +23,22 @@ namespace MvvmAadapters
         public T Model { get; private set; }
 
         public bool IsChanged { get { return _changedProperties.Any(); } }
+
+        public void AcceptChanges()
+        {
+            _changedProperties.Clear();
+            OnPropertyChanged("");
+        }
+
+        public void RejectChanges()
+        {
+            foreach(var originalPropertyValue in _changedProperties)
+            {
+                typeof(T).GetProperty(originalPropertyValue.Key).SetValue(Model,originalPropertyValue.Value);
+            }
+            _changedProperties.Clear();
+            OnPropertyChanged("");
+        }
 
         protected TValue GetValue<TValue>([CallerMemberName] string propertyName = null)
         {
@@ -93,6 +110,5 @@ namespace MvvmAadapters
             };
         }
 
-      
     }
 }
