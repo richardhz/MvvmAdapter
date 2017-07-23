@@ -23,7 +23,8 @@ namespace UnitTestMvvmAdapters
                 {
                     new PocoListItem { Id = 1, Title = "TestItem01", Description = "Description01" },
                     _listItem
-                }
+                },
+                ComplexProp = new PocoListItem { Id = 2, Title = "Complex Property", Description = "Like address" }
 
             };
         }

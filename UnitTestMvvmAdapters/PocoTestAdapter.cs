@@ -13,6 +13,7 @@ namespace UnitTestMvvmAdapters
         public PocoTestAdapter(PocoTestClass model ) : base(model)
         {
             InitializeCollections(model);
+            InitializeComplexProperties(model);
         }
 
         private void InitializeCollections(PocoTestClass model)
@@ -21,6 +22,12 @@ namespace UnitTestMvvmAdapters
             Items = new ObservableCollection<PocoListItemAdapter>(model.Items.Select(i => new PocoListItemAdapter(i))); 
             //However, if used the RegisterCollection method should do what it says on the tin. 
             RegisterCollection(Items, model.Items);
+        }
+
+        private void InitializeComplexProperties(PocoTestClass model)
+        {
+            ComplexProp = new PocoListItemAdapter(model.ComplexProp);
+            RegisterComplex(ComplexProp);
         }
 
         public int TestId
@@ -45,6 +52,8 @@ namespace UnitTestMvvmAdapters
         }
 
         public ObservableCollection<PocoListItemAdapter> Items { get; private set; }
+
+        public PocoListItemAdapter ComplexProp { get; private set; }
        
     }
 }
