@@ -33,6 +33,11 @@ namespace UnitTestMvvmAdapters
             get { return GetValue<string>(); }
             set { SetValue(value); }
         }
+
+        public string TestNameOriginal => GetTrackedValue<string>(nameof(TestName));
+
+        public bool TestIdHasChanged => IsPropertyChanged(nameof(TestId));
+
         public bool TestBool
         {
             get { return GetValue<bool>(); }
@@ -40,5 +45,6 @@ namespace UnitTestMvvmAdapters
         }
 
         public ObservableCollection<PocoListItemAdapter> Items { get; private set; }
+       
     }
 }
