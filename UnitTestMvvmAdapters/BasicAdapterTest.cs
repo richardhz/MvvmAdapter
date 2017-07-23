@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections.Generic;
 using System;
 using Xunit;
 
@@ -8,15 +8,22 @@ namespace UnitTestMvvmAdapters
     {
 
         private PocoTestClass _tester;
+        private PocoListItem _itemList;
 
-        
+
         public void Initialize()
         {
+            _itemList = new PocoListItem { Id = 2, Title = "TestItem02", Description = "Description02" };
             _tester = new PocoTestClass
             {
                 TestId = 25,
                 TestName = "Roger",
-                TestBool = false
+                TestBool = false,
+                Items = new List<PocoListItem>
+                {
+                    new PocoListItem { Id = 1, Title = "TestItem01", Description = "Description01" },
+                    _itemList
+                }
             };
         }
 

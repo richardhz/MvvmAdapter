@@ -96,6 +96,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdapterChangeNotificationTest.cs" />
+    <Compile Include="PocoListItem.cs" />
+    <Compile Include="PocoListItemAdapter.cs" />
     <Compile Include="PocoTestAdapter.cs" />
     <Compile Include="PocoTestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -11,5 +11,6 @@ namespace UnitTestMvvmAdapters
         public int TestId { get; set; }
         public string TestName { get; set; }
         public bool TestBool { get; set; }
+        public List<PocoListItem> Items { get; set; }
     }
 }
