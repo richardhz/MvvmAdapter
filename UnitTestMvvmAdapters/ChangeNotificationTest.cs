@@ -5,7 +5,7 @@ using Xunit;
 
 namespace UnitTestMvvmAdapters
 {
-    public class AdapterChangeNotificationTest
+    public class ChangeNotificationTest
     {
         private PocoTestClass _tester;
         private PocoListItem _listItem;
@@ -87,6 +87,17 @@ namespace UnitTestMvvmAdapters
 
             var adapter = new PocoTestAdapter(_tester);
             adapter.Items.Add(new PocoListItemAdapter(_listItem));
+
+            CheckCollectionsInSync(adapter);
+        }
+
+        [Fact]
+        public void PocoAndAdapterCollectionsShouldBeInSyncAfterRemovingAllListItems()
+        {
+            Initialize();
+            var adapter = new PocoTestAdapter(_tester);
+
+            adapter.Items.Clear();
 
             CheckCollectionsInSync(adapter);
         }

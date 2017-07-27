@@ -5,7 +5,7 @@ using Xunit;
 
 namespace UnitTestMvvmAdapters
 {
-    public class AdapterChangeTrackingTests
+    public class ChangeTrackingTests
     {
         private PocoTestClass _tester;
         private PocoListItem _listItem;

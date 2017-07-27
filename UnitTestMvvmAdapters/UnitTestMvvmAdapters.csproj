@@ -95,9 +95,11 @@
     <SDKReference Include="TestPlatform.Universal, Version=$(UnitTestPlatformVersion)" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdapterChangeNotificationTest.cs" />
-    <Compile Include="AdapterChangeTrackingComplexProperties.cs" />
-    <Compile Include="AdapterChangeTrackingTests.cs" />
+    <Compile Include="ChangeNotificationTest.cs" />
+    <Compile Include="ChangeTrackingCollectionTest.cs" />
+    <Compile Include="ChangeTrackingComplexPropertyTest.cs" />
+    <Compile Include="ChangeTrackingTests.cs" />
+    <Compile Include="ChangeTrackingCollectionPropertyTest.cs" />
     <Compile Include="PocoListItem.cs" />
     <Compile Include="PocoListItemAdapter.cs" />
     <Compile Include="PocoTestAdapter.cs" />

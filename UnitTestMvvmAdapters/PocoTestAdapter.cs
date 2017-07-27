@@ -19,7 +19,7 @@ namespace UnitTestMvvmAdapters
         private void InitializeCollections(PocoTestClass model)
         {
             //The creation of adapter list items is not tested here, this would be a user test and not a library test.
-            Items = new ObservableCollection<PocoListItemAdapter>(model.Items.Select(i => new PocoListItemAdapter(i))); 
+            Items = new ChangeTrackingCollection<PocoListItemAdapter>(model.Items.Select(i => new PocoListItemAdapter(i))); 
             //However, if used the RegisterCollection method should do what it says on the tin. 
             RegisterCollection(Items, model.Items);
         }
@@ -51,7 +51,7 @@ namespace UnitTestMvvmAdapters
             set { SetValue(value); }
         }
 
-        public ObservableCollection<PocoListItemAdapter> Items { get; private set; }
+        public ChangeTrackingCollection<PocoListItemAdapter> Items { get; private set; }
 
         public PocoListItemAdapter ComplexProp { get; private set; }
        

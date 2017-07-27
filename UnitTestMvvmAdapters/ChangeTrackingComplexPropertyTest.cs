@@ -6,7 +6,7 @@ using Xunit;
 
 namespace UnitTestMvvmAdapters
 {
-    public class AdapterChangeTrackingComplexProperties
+    public class ChangeTrackingComplexPropertyTest
     {
         private PocoTestClass _tester;
         private PocoListItem _listItem;

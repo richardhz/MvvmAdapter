@@ -28,5 +28,7 @@ namespace UnitTestMvvmAdapters
             get { return GetValue<string>(); }
             set { SetValue(value); }
         }
+
+        public string DescriptionOriginal => GetTrackedValue<string>(nameof(Description));
     }
 }

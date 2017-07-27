@@ -102,26 +102,16 @@ namespace MvvmAadapters
             }
         }
 
-        protected void RegisterCollection<TAdapter,TModel>(ObservableCollection<TAdapter> adapterCollection,List<TModel> modelCollection) 
+        protected void RegisterCollection<TAdapter,TModel>(ChangeTrackingCollection<TAdapter> adapterCollection,List<TModel> modelCollection)
             where TAdapter : ModelAdapter<TModel> where TModel : class
         {
             adapterCollection.CollectionChanged += (s, e) =>
             {
-                if (e.OldItems != null)
-                {
-                    foreach (var item in e.OldItems.Cast<TAdapter>())
-                    {
-                        modelCollection.Remove(item.Model);
-                    }
-                }
-                if (e.NewItems != null)
-                {
-                    foreach (var item in e.NewItems.Cast<TAdapter>())
-                    {
-                        modelCollection.Add(item.Model);
-                    }
-                }
+                modelCollection.Clear();
+                modelCollection.AddRange(adapterCollection.Select(a => a.Model));
+
             };
+            RegisterTrackingObject(adapterCollection);
         }
 
         protected void RegisterComplex<TModel>(ModelAdapter<TModel> adapter)
